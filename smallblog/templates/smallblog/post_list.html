@@ -35,16 +35,18 @@
         </div>
         <div class="col">
           <h1>Bem bind@ ao Bloguim!!!</h1>
+        {% for post in posts %}
           <div class="card text-center">
             <!-- <div class="card-header">Featured</div> -->
             <div class="card-body">
-              <h5 class="card-title">Título do post</h5>
+              <h5 class="card-title">{{post.title}}</h5>
               <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique at asperiores mollitia doloribus vel non officia, eius rerum, voluptatum delectus, autem iste animi incidunt magnam deserunt culpa numquam accusantium id.
+               {{post.text}}
               </p>
               <a href="#" class="btn btn-primary">futuro botao</a>
             </div>
-            <div class="card-footer text-muted">2 days ago</div>
+            <div class="card-footer text-muted">{{post.published_date}}</div>
+        {% endfor %}
           </div>
         </div>
       </div>
