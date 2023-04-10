@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} Novo Post {% endblock %}
+
+{% block 'content' %}
+<div class="container">
+    <form action="{% url 'salve_post' %}" method="post">{% csrf_token %}
+        <br>
+        <div class="col text-center" style="background-color: rgb(48, 164, 129); border-radius: 15px;">
+            <div class="row pt-3" style="color: white;">
+                <br>
+                <h2>Publique uma nova postagem</h2>
+            </div>
+            <hr>
+            <div class="row mx-3">
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                        </svg>
+                    </span>
+                    <input type="text" class="form-control" name="title" placeholder="Título..." required="required">
+                </div>
+            </div>
+            <div class="row mt-2 mx-3" style="height: 100px;">
+                <br>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-send-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z" />
+                        </svg>
+                    </span>
+                    <input type="text" class="form-control" name="text" placeholder="Texto..."
+                        required="required">
+                </div>
+            </div>
+
+            <div class="form-group mt-4">
+                <button type="submit" class="btn btn-success">Postar</button>
+            </div>
+            <br>
+        </div>
+    </form>
+<br>
+{% endblock %}

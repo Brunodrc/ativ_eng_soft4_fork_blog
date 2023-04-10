@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block 'title' %} Altere sua postagem {% endblock %}
+
+{% block 'content' %} 
+<div class="containter text-center mx-auto" style="width: 600px;">
+    <br>
+    <h1>Atualize os dados do seu post</h1>
+    <hr>
+    <form action="{% url 'salve_edit' post.id %}" method="post">{% csrf_token %}
+        {% csrf_token %}
+        <div class="col">
+            <label>Título:</label>
+            <input name="title" class="form-control" type="text" value="{{post.title}}">
+        </div>
+        <p>
+            <label>Texto:</label>
+            <input name="text" class="form-control" type="text" value="{{post.text}}">
+        </p>
+        <a href="">
+            <input type="submit" class="btn btn-success" value="Salvar">
+        </a>
+    </form>    
+</div>
+
+
+{% endblock %}
