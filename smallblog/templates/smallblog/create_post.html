@@ -3,7 +3,7 @@
 {% block 'title' %} Novo Post {% endblock %}
 
 {% block 'content' %}
-<div class="container">
+<div class="container" >
     <form action="{% url 'salve_post' %}" method="post">{% csrf_token %}
         <br>
         <div class="col text-center" style="background-color: rgb(48, 164, 129); border-radius: 15px;">
