@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -5,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bloguim</title>
+    <title>{% block 'title' %} Bloguim {% endblock %}</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -14,46 +15,38 @@
     />
     <link rel="stylesheet" href="{% static 'css/smallblog.css' %}">
   </head>
-  <body style="background-color: blue; color: rgb(45, 148, 113);">
-    <div class="container text-center">
-      <br />
-      <div class="row">
-        <div class="col-4">
-          <h2>Menu</h2>
-          <div class="list-group">
-            <a href="{% url 'create_post' %}" class="list-group-item list-group-item-action"
-              >Nova postagem 2023 [atualizada]</a
-            >
-            <a href="#" class="list-group-item list-group-item-action"
-              >2 item</a
-            >
-            <a href="#" class="list-group-item list-group-item-action"
-              >3 item</a
-            >
-            <a href="#" class="list-group-item list-group-item-action"
-              >4 item</a
-            >
+  <body>
+    {% block 'content' %} 
+      <div class="container text-center">
+          <br>
+          <div class="row">
+              <div class="col-4 mx-2">
+                <h2> Menu</h2>
+                <div class="list-group">
+                  <a href="{% url 'create_post' %}" class="bg-info list-group-item list-group-item-action">                 
+                    <button class="btn form-control text-white fw-bold">Criar nova Postagem</button>
+                  </a>
+                </div>
+              </div>
+              <div class="col mx-2">
+                  <h1 class="bg-info text-white fw-bold fs-1 form-control">Bem vind@ ao Bloguim!!!</h1>
+                  {% for post in posts %}
+                  <div class="card text-center">
+                    <!-- <div class="card-header">Featured</div> -->
+                    <div class="card-body form-control">
+                      <h1 class="card-title">{{post.title}}</h1>
+                      <p class="card-text">
+                       {{post.text}}
+                      </p>
+                      <a href="{% url 'edit_post' post.id %}" class="btn btn-primary">Editar</a>
+                      <a href="{% url 'delete_post' post.id  %}" class="btn btn-danger">Deletar</a>
+                    </div>
+                    <div class="card-footer text-muted">{{post.created_at}}</div>
+                  {% endfor %}
+              </div>
           </div>
-        </div>
-        <div class="col">
-          <h1>Bem vind@ ao Bloguim!!!</h1>
-        {% for post in posts %}
-          <div class="card text-center">
-            <!-- <div class="card-header">Featured</div> -->
-            <div class="card-body">
-              <h1 class="card-title">{{post.title}}</h1>
-              <p class="card-text">
-               {{post.text}}
-              </p>
-              <a href="{% url 'edit_post' post.id %}" class="btn btn-primary">Editar</a>
-              <a href="{% url 'delete_post' post.id  %}" class="btn btn-danger">Deletar</a>
-            </div>
-            <div class="card-footer text-muted">{{post.created_at}}</div>
-        {% endfor %}
-          </div>
-        </div>
       </div>
-    </div>
+    {% endblock %}
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
       integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
